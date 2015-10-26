@@ -106,8 +106,11 @@ int main(void){
 	uint16_t ADC_readout;
 
   	while(1) {
+
+  		// надо периодически опрашивать АЦП и постоянно обновлять индикацию
+  		// поскольку таймер настраивать лениво, будет так
   		ADC_readout = raw_ADC();
-  		led_out(ADC_readout);
+  		for (uint16_t dummy_counter=0; dummy_counter<1000; dummy_counter++) { led_out(ADC_readout); }
   	}
 
 	return -1; //никогда
